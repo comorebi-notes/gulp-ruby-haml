@@ -34,7 +34,11 @@ module.exports = function(opt) {
     var fileContents = file.contents.toString('utf8');
     var hamlPath = options.hamlPath || 'haml';
 
-    var args = [hamlPath, '-s']; // read from stdin
+    var args = [hamlPath];
+    if (options.hamlVersion) {
+      args.push('_' + options.hamlVersion + '_');
+    }
+    args.push('-s'); // read from stdin
     if (options.trace) {
       args.push('--trace');
     }
